@@ -1,0 +1,163 @@
+﻿@model IEnumerable<WomanList.Models.Woman>
+
+@{
+    ViewData["Title"] = "Index";
+    bool sort = !ViewBag.Ordersort;
+}
+
+<h1>Index</h1>
+
+<form asp-action="Index" method="get">
+    仮名・本名絞り込み:<input type="text" name="search" value="@ViewBag.Search" />
+    <input type="submit" value="Filter" />
+</form>
+<div>
+    @if (ViewBag.Prev != null)
+    {
+        <a asp-action="Index" asp-route-page="@ViewBag.Prev" asp-route-search="@ViewBag.Search" asp-route-order="@ViewBag.Order" asp-route-ordersort="@ViewBag.Ordersort">prev</a>
+    }
+    else
+    {
+        <span>prev</span>
+    }
+    /
+    @if (ViewBag.Next != null)
+    {
+        <a asp-action="Index" asp-route-page="@ViewBag.Next" asp-route-search="@ViewBag.Search">next</a>
+    }
+    else
+    {
+        <span>next</span>
+    }
+</div>
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.仮名)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.本名)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.年齢)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.職業)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.年収)
+            </th>
+            <th>
+                <a asp-action="Index" asp-route-page="@ViewBag.Next" asp-route-search="@ViewBag.Search" asp-route-order=1 asp-route-ordersort=@sort>
+                    @Html.DisplayNameFor(model => model.顔)
+                </a>
+            </th>
+            <th>
+                <a asp-action="Index" asp-route-page="@ViewBag.Next" asp-route-search="@ViewBag.Search" asp-route-order=2 asp-route-ordersort=@sort>
+                    @Html.DisplayNameFor(model => model.胸)
+                </a>
+            </th>
+            <th>
+                <a asp-action="Index" asp-route-page="@ViewBag.Next" asp-route-search="@ViewBag.Search" asp-route-order=3 asp-route-ordersort=@sort>
+                    @Html.DisplayNameFor(model => model.体型)
+                </a>
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    <a asp-action="Details" asp-route-id="@item.Id">
+                        @Html.DisplayFor(modelItem => item.仮名)
+                    </a>
+                </td>
+                <td>
+                    <a asp-action="Details" asp-route-id="@item.Id">
+                        @Html.DisplayFor(modelItem => item.本名)
+                    </a>
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.年齢)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.職業)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.年収)
+                </td>
+                <td>
+                    @if (item.顔 < 3)
+                    {
+                        <span style="color:red">
+                            @Html.DisplayFor(modelItem => item.顔)
+                        </span>
+                    }
+                    else if (item.顔 >= 3 && item.顔 < 7)
+                    {
+                        <span style="color:blue">
+                            @Html.DisplayFor(modelItem => item.顔)
+                        </span>
+                    }
+                    else if (item.顔 >= 7)
+                    {
+                        <span style="color:yellow">
+                            @Html.DisplayFor(modelItem => item.顔)
+                        </span>
+                    }
+                </td>
+                <td>
+                    @if (item.胸 < 3)
+                    {
+                        <span style="color:red">
+                            @Html.DisplayFor(modelItem => item.胸)
+                        </span>
+                    }
+                    else if (item.胸 >= 3 && item.胸 < 7)
+                    {
+                        <span style="color:blue">
+                            @Html.DisplayFor(modelItem => item.胸)
+                        </span>
+                    }
+                    else if (item.胸 >= 7)
+                    {
+                        <span style="color:yellow">
+                            @Html.DisplayFor(modelItem => item.胸)
+                        </span>
+                    }
+                </td>
+                <td>
+                    @if (item.体型 < 3)
+                    {
+                        <span style="color:red">
+                            @Html.DisplayFor(modelItem => item.体型)
+                        </span>
+                    }
+                    else if (item.体型 >= 3 && item.体型 < 7)
+                    {
+                        <span style="color:blue">
+                            @Html.DisplayFor(modelItem => item.体型)
+                        </span>
+                    }
+                    else if (item.体型 >= 7)
+                    {
+                        <span style="color:yellow">
+                            @Html.DisplayFor(modelItem => item.体型)
+                        </span>
+                    }
+                </td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+                    <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
+                    <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

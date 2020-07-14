@@ -1,0 +1,66 @@
+﻿@model IEnumerable<WomanList.Models.Dating>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<div>
+    @if (ViewBag.Prev != null)
+    {
+        <a asp-action="Index" asp-route-page="@ViewBag.Prev">prev</a>
+    }
+    else
+    {
+        <span>prev</span>
+    }
+    /
+    @if (ViewBag.Next != null)
+    {
+        <a asp-action="Index" asp-route-page="@ViewBag.Next">next</a>
+    }
+    else
+    {
+        <span>next</span>
+    }
+</div>
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.場所)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.女性)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.備考)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.場所)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.女性.本名)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.備考)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

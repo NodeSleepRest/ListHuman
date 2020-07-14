@@ -1,0 +1,95 @@
+﻿@model WomanList.Models.Woman
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h1>Create</h1>
+
+<h4>Woman</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Id" class="control-label"></label>
+                <input asp-for="Id" class="form-control" />
+                <span asp-validation-for="Id" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="仮名" class="control-label"></label>
+                <input asp-for="仮名" class="form-control" />
+                <span asp-validation-for="仮名" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="本名" class="control-label"></label>
+                <input asp-for="本名" class="form-control" />
+                <span asp-validation-for="本名" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="年齢" class="control-label"></label>
+                <input asp-for="年齢" class="form-control" />
+                <span asp-validation-for="年齢" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="居住地" class="control-label"></label>
+                <select asp-for="居住地" class ="form-control" asp-items="ViewBag.居住地"></select>
+            </div>
+            <div class="form-group">
+                <label asp-for="出身地" class="control-label"></label>
+                <select asp-for="出身地" class ="form-control" asp-items="ViewBag.出身地"></select>
+            </div>
+            <div class="form-group">
+                <label asp-for="職業" class="control-label"></label>
+                <input asp-for="職業" class="form-control" />
+                <span asp-validation-for="職業" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="年収" class="control-label"></label>
+                <input asp-for="年収" class="form-control" />
+                <span asp-validation-for="年収" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="顔" class="control-label"></label>
+                <input asp-for="顔" class="form-control" />
+                <span asp-validation-for="顔" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="胸" class="control-label"></label>
+                <input asp-for="胸" class="form-control" />
+                <span asp-validation-for="胸" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="体型" class="control-label"></label>
+                <input asp-for="体型" class="form-control" />
+                <span asp-validation-for="体型" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="出会った日" class="control-label"></label>
+                <input asp-for="出会った日" class="form-control" />
+                <span asp-validation-for="出会った日" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="知り合った方法" class="control-label"></label>
+                <select asp-for="知り合った方法" class ="form-control" asp-items="ViewBag.知り合った方法"></select>
+            </div>
+            <div class="form-group">
+                <label asp-for="備考" class="control-label"></label>
+                <input asp-for="備考" class="form-control" />
+                <span asp-validation-for="備考" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

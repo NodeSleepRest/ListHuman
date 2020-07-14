@@ -1,0 +1,128 @@
+﻿@model WomanList.Models.Woman
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h1>Details</h1>
+
+<div>
+    <h4>Woman</h4>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.仮名)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.仮名)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.本名)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.本名)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.年齢)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.年齢)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.職業)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.職業)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.年収)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.年収)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.顔)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.顔)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.胸)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.胸)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.体型)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.体型)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.出会った日)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.出会った日)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.備考)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.備考)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.出身地)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.出身地Navigation.名称)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.居住地)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.居住地Navigation.名称)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.知り合った方法)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.知り合った方法Navigation.名称)
+        </dd>
+    </dl>
+    @if (Model.Dating.Count() == 0)
+    {
+        <div>まだデートしてないよ</div>
+    }
+    else
+    {
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>
+                        回数
+                    </th>
+                    <th>
+                        場所
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var x in Model.Dating.OrderBy(x => x.Id).Select((Value, Index) => new { Value, Index }))
+                {
+                    <tr>
+                        <td>
+                            @(x.Index + 1)回目
+                        </td>
+                        <td>
+                            @x.Value.場所
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    }
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model.Id">Edit</a> |
+    <a asp-action="Index">Back to List</a>
+</div>
